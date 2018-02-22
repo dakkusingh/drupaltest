@@ -15,12 +15,12 @@ env:
     - DRUPAL_CORE_HEAD=8.4.x-dev
   matrix:
     - DRUPAL_CORE_VERSION=default
-    - DRUPAL_CORE_VERSION=$DRUPAL_CORE_HEAD
+    # - DRUPAL_CORE_VERSION=$DRUPAL_CORE_HEAD
 
-matrix:
-  allow_failures:
-    - env: DRUPAL_CORE_VERSION=$DRUPAL_CORE_HEAD
-  fast_finish: true
+# matrix:
+#   allow_failures:
+#     - env: DRUPAL_CORE_VERSION=$DRUPAL_CORE_HEAD
+#   fast_finish: true
 
 cache:
   bundler: true
@@ -43,11 +43,14 @@ before_install:
   - composer self-update
   # - composer validate --no-check-all --ansi
   - composer update
+  - composer require drupal/coder:^8.2.12
+  - composer require dealerdirect/phpcodesniffer-composer-installer
 
 install:
   # Set git info.
-  - git config --global user.name "Travis-CI"
-  - git config --global user.email "noreply@travis-ci.org"
+  # - git config --global user.name "Travis-CI"
+  # - git config --global user.email "noreply@travis-ci.org"
+
   # - source ${BLT_DIR}/scripts/travis/setup_environment
   # Create extra dbs for multisite testing.
   # - mysql -u root -e "CREATE DATABASE drupal2; GRANT ALL ON drupal2.* TO 'drupal'@'localhost';"
