@@ -58,7 +58,8 @@ install:
   # - mysql -u root -e "CREATE DATABASE drupal4; GRANT ALL ON drupal4.* TO 'drupal'@'localhost';"
 
 script:
-  - ${BLT_DIR}/vendor/bin/robo phpcsdrupal web/modules/custom
+  # - ${BLT_DIR}/vendor/bin/robo phpcsdrupal web/modules/custom
+  - ${BLT_DIR}/vendor/bin/robo phpunittests
 before_deploy:
   # - cd ${TRAVIS_BUILD_DIR}/../blted8
   #
