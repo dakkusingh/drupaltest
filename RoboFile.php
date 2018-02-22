@@ -13,6 +13,7 @@ class RoboFile extends Tasks {
     $this->drupalRoot = __DIR__;
     $this->bin = $this->drupalRoot . '/vendor/bin';
     $this->phpcs = $this->bin . '/phpcs';
+    $this->phpunit = $this->bin . '/phpunit';
   }
 
   /**
@@ -148,6 +149,13 @@ class RoboFile extends Tasks {
       ->option('--verbose')
       ->run()
       ->stopOnFail();
+  }
+
+  public function phpunittests() {
+    $phpunit_command_string = $this->phpunit . ' -c web/core web/core/tests/Drupal/Tests/Core/Password/PasswordHashingTest.php';
+    $task = $this->taskExecStack()->exec($phpunit_command_string);
+    $result = $task->run();
+    return $result;
   }
 
 }
